@@ -1,0 +1,15 @@
+{
+  "name": "r2-imgbed-worker",
+  "version": "3.0.0",
+  "description": "R2 ImageBed - Cloudflare Worker backend (R2 binding, no S3 SDK)",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  }
+}

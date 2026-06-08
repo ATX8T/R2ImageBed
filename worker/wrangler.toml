@@ -1,0 +1,23 @@
+# Wrangler 配置 - R2ImageBed Worker
+# 部署：wrangler deploy
+# 本地开发：wrangler dev
+
+name = "r2-imgbed"
+main = "src/index.js"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+
+# R2 桶绑定（绑定名 BUCKET 在 Worker 代码中通过 env.BUCKET 访问）
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "tuchuang"
+# preview_bucket_name = "tuchuang-preview"  # 本地 wrangler dev 用，可选
+
+# 公开域名（前端展示用，仅作为环境变量传给 Worker）
+# 真实值由 GitHub Actions / wrangler secret 注入
+[vars]
+PUBLIC_BASE_URL = "https://pub-990f3fd540424934b56285f5fce4bd42.r2.dev"
+
+# Secret（不写在这里！用以下命令注入，或在 Cloudflare Dashboard 配置）：
+#   wrangler secret put ACCESS_TOKEN
+# 用途：前端调用 Worker 时必须带 Authorization: Bearer <ACCESS_TOKEN>
